@@ -13,5 +13,10 @@ class BikeTest(unittest.TestCase):
 		self.bike.break_bike()
 		self.assertTrue(self.bike.broken)
 
+	def test_bike_can_be_fixed(self):
+		self.bike.break_bike()
+		self.bike.fix_bike()
+		self.assertFalse(self.bike.broken)
+
 if __name__ == '__main__':
 	unittest.main()
