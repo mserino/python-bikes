@@ -1,18 +1,15 @@
 Python Bikes
 ============
-Object-Oriented Program written in Python3 and Unittest
+Object-Oriented Program written in Python3 and Nosetests
 
 ###Classes
 - Bike
 - Person
 - Station
 
-###What it does?
-The bike can be broken
-
 ###Technologies
 - Python3
-- Unittest
+- Nosetests
 
 ###How do you use it? (Mac)
 clone the repository:
@@ -66,6 +63,12 @@ check the available bikes: `>>> station.available_bikes`
 and the broken bikes: `>>> station.broken_bikes`
 
 the station can release a bike: `>>> station.release(bike)`
+
+###Run the tests:
+`$ cd python-bikes`
+
+to run all the tests: `$ nosetests`
+to run a specific class test: `$ nosetests tests/station_tests.py`
 
 ###What's missing?
 ~ This project is still work in progress ~
