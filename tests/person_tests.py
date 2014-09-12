@@ -1,7 +1,7 @@
 from nose.tools import *
 import nose
-from person import Person
-from bike import Bike
+from person.person import Person
+from bike.bike import Bike
 
 class TestPerson(object):
 

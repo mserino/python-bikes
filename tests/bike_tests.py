@@ -1,6 +1,6 @@
 from nose.tools import *
 import nose
-from bike import Bike
+from bike.bike import Bike
 
 class TestBike(object):
 
