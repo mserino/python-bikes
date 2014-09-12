@@ -74,3 +74,11 @@ class TestStation(object):
 		self.station.dock(self.bike2)
 		assert_in(self.bike, self.station.available_bikes)
 		assert_in(self.bike2, self.station.available_bikes)
+
+	def test_if_a_bike_is_already_docked(self):
+		self.station.dock(self.bike)
+		assert_true(self.station.has_already(self.bike))
+
+	def test_bike_cannot_be_docked_twice(self):
+		self.station.dock(self.bike)
+		assert_equal(self.station.dock(self.bike), "Cannot dock the same bike twice")

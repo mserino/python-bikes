@@ -7,10 +7,12 @@ class Station(object):
 		self.available_bikes = []
 
 	def dock(self, bike):
-		if self.is_full() == "not full":
-			self.bikes.append(bike)
-		else:
+		if self.is_full() == "full":
 			return "Cannot dock any more bikes"
+		elif self.has_already(bike):
+			return "Cannot dock the same bike twice"
+		else:
+			self.bikes.append(bike)
 
 		if bike.broken:
 			self.broken_bikes.append(bike)
@@ -25,3 +27,7 @@ class Station(object):
 			return "full"
 		else:
 			return "not full"
+
+	def has_already(self, bike):
+		if bike in self.bikes:
+			return True

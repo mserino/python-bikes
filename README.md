@@ -45,7 +45,7 @@ create your first person: `>>> John = Person()`
 
 ride the bike: `>>> John.ride(bike)`
 
-does John have bikes? `>>> John.has_bike?()`
+does John have bikes? `>>> John.has_bike()`
 
 John can also fall from the bike (and break it): `John.falls_from(bike)`
 
