@@ -56,5 +56,3 @@ class TestPerson(object):
 		self.person.falls_from(self.bike)
 		assert_true(self.bike.broken)
 
-if __name__ == '__main__':
-	unittest.main()
