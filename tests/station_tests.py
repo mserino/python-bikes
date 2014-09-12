@@ -42,6 +42,19 @@ class TestStation(object):
 	def test_station_can_dock_maximum_five_bikes(self):
 		assert_equal(self.station.capacity, 5)
 
+	def test_station_is_not_full(self):
+		self.station.dock(self.bike)
+		self.station.dock(self.bike2)
+		assert_equal(self.station.is_full(), "not full")
+
+	def test_station_can_be_full(self):
+		self.station.dock(self.bike)
+		self.station.dock(self.bike2)
+		self.station.dock(self.bike3)
+		self.station.dock(self.bike4)
+		self.station.dock(self.bike5)
+		assert_equal(self.station.is_full(), "full")
+
 	def test_station_cannot_dock_more_than_five_bikes(self):
 		self.station.dock(self.bike)
 		self.station.dock(self.bike2)
@@ -49,3 +62,15 @@ class TestStation(object):
 		self.station.dock(self.bike4)
 		self.station.dock(self.bike5)
 		assert_equal(self.station.dock(self.bike6), "Cannot dock any more bikes")
+
+	def test_station_has_broken_bikes(self):
+		self.bike.break_bike()
+		self.station.dock(self.bike)
+		self.station.dock(self.bike2)
+		assert_in(self.bike, self.station.broken_bikes)
+
+	def test_station_has_available_bikes(self):
+		self.station.dock(self.bike)
+		self.station.dock(self.bike2)
+		assert_in(self.bike, self.station.available_bikes)
+		assert_in(self.bike2, self.station.available_bikes)

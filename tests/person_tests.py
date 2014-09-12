@@ -55,4 +55,3 @@ class TestPerson(object):
 		self.person.rides(self.bike)
 		self.person.falls_from(self.bike)
 		assert_true(self.bike.broken)
-

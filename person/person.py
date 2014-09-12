@@ -5,7 +5,7 @@ class Person(object):
 		self.capacity = 1
 
 	def rides(self, bike):
-		if len(self.bikes) < self.capacity:
+		if self.is_full() == "not full":
 			self.bikes.append(bike)
 		else:
 			return "Cannot ride more than one bike"
