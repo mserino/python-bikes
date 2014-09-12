@@ -27,12 +27,12 @@ class TestPerson(object):
 		assert_equal(len(self.person.bikes), 0)
 
 	def test_person_can_have_a_bike(self):
-		self.person.dock(self.bike)
+		self.person.rides(self.bike)
 		assert_equal(len(self.person.bikes), 1)
 		assert_in(self.bike, self.person.bikes)
 
 	def test_person_can_release_a_bike(self):
-		self.person.dock(self.bike)
+		self.person.rides(self.bike)
 		self.person.release(self.bike)
 		assert_equal(len(self.person.bikes), 0)
 
@@ -43,13 +43,18 @@ class TestPerson(object):
 		assert_equal(self.person.is_full(), "not full")
 
 	def test_person_is_full(self):
-		self.person.dock(self.bike)
+		self.person.rides(self.bike)
 		assert_equal(self.person.is_full(), "full")
 
 	def test_person_cannot_have_another_bike_if_full(self):
-		self.person.dock(self.bike)
-		self.person.dock(self.bike2)
-		assert_equal(self.person.dock(self.bike2), "Cannot dock more than one bike")
+		self.person.rides(self.bike)
+		self.person.rides(self.bike2)
+		assert_equal(self.person.rides(self.bike2), "Cannot ride more than one bike")
+
+	def test_person_falls_and_bike_is_broken(self):
+		self.person.rides(self.bike)
+		self.person.falls_from(self.bike)
+		assert_true(self.bike.broken)
 
 if __name__ == '__main__':
 	unittest.main()

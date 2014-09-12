@@ -4,11 +4,11 @@ class Person(object):
 		self.bikes = []
 		self.capacity = 1
 
-	def dock(self, bike):
+	def rides(self, bike):
 		if len(self.bikes) < self.capacity:
 			self.bikes.append(bike)
 		else:
-			return "Cannot dock more than one bike"
+			return "Cannot ride more than one bike"
 
 	def release(self, bike):
 		self.bikes.remove(bike)
@@ -18,3 +18,6 @@ class Person(object):
 			return "full"
 		else:
 			return "not full"
+
+	def falls_from(self, bike):
+		bike.broken = True
