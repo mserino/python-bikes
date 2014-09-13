@@ -4,8 +4,22 @@ Object-Oriented Program written in Python3 and Nosetests
 
 ###Classes
 - Bike
+	- can be broken or not
 - Person
+	- can rent the bike from the station (only if available)
+	- can ride the bike
+	- can fall from the bike (and break it)
 - Station
+	- can have bikes (with maximum capacity)
+	- can have available bikes
+	- can have broken bikes
+	- can release broken bikes (only if present)
+- Van
+	- can release available bikes (only if present)
+	- can release broken bikes (only if present)
+- Garage
+	- can fix all the broken bikes (only if present)
+	- can release all the available bikes (only if present)
 
 ###Technologies
 - Python3

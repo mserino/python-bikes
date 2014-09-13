@@ -33,6 +33,10 @@ class TestPerson(object):
 		assert_equal(len(self.person.bikes), 1)
 		assert_in(self.bike, self.person.bikes)
 
+	def test_person_cannot_ride_a_broken_bike(self):
+		self.bike.break_bike()
+		assert_equal(self.person.rides(self.bike), "Cannot ride a broken bike")
+
 	def test_person_can_release_a_bike(self):
 		self.person.rides(self.bike)
 		self.person.release(self.bike)
@@ -66,3 +70,14 @@ class TestPerson(object):
 		self.person.rent_from(self.bike, self.station)
 		assert_in(self.bike, self.person.bikes)
 		assert_not_in(self.bike, self.station.bikes)
+
+	def test_cannot_rent_a_broken_bike_from_the_station(self):
+		self.bike.break_bike()
+		self.station.dock(self.bike)
+		assert_equal(self.person.rent_from(self.bike, self.station), "This bike is broken")
+
+	def test_person_can_return_bike(self):
+		self.station.dock(self.bike)
+		self.person.rent_from(self.bike, self.station)
+		self.person.return_to(self.bike, self.station)
+		assert_in(self.bike, self.station.bikes)

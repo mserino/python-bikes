@@ -38,7 +38,7 @@ class Container:
 
 	def release_and_dock(self, bikes, other_container):
 		for bike in bikes:
-			self.release(bike)
+			self.bikes.remove(bike)
 			other_container.dock(bike)
 
 	def release_broken_bikes_to(self, other_container):

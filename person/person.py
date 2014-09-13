@@ -6,7 +6,10 @@ class Person(object):
 
 	def rides(self, bike):
 		if self.has_bike() == "doesn\'t have any bike":
-			self.bikes.append(bike)
+			if bike.broken == True:
+				return "Cannot ride a broken bike"
+			else:
+				self.bikes.append(bike)
 		else:
 			return "Cannot ride more than one bike"
 
@@ -24,7 +27,14 @@ class Person(object):
 
 	def rent_from(self, bike, station):
 		if bike in station.bikes:
-			station.release(bike)
-			self.rides(bike)
+			if bike.broken == True:
+				return "This bike is broken"
+			else:
+				station.release(bike)
+				self.rides(bike)
 		else:
 			return "There are no bikes here"
+
+	def return_to(self, bike, station):
+		self.release(bike)
+		station.dock(bike)
