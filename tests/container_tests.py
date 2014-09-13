@@ -96,7 +96,7 @@ class TestContainer(object):
 		self.bike2.break_bike()
 		self.container.dock(self.bike)
 		self.container.dock(self.bike2)
-		self.container.release_broken_bikes(self.other_container)
+		self.container.release_broken_bikes_to(self.other_container)
 		assert_in(self.bike, self.other_container.bikes)
 		assert_in(self.bike2, self.other_container.bikes)
 		assert_not_in(self.bike, self.container.bikes)
@@ -104,12 +104,12 @@ class TestContainer(object):
 
 	def test_error_message_if_no_broken_bikes(self):
 		self.container.dock(self.bike)
-		assert_equal(self.container.release_broken_bikes(self.other_container), "There are no broken bikes here")
+		assert_equal(self.container.release_broken_bikes_to(self.other_container), "There are no broken bikes here")
 
 	def test_can_release_all_available_bikes(self):
 		self.container.dock(self.bike)
 		self.container.dock(self.bike2)
-		self.container.release_available_bikes(self.other_container)
+		self.container.release_available_bikes_to(self.other_container)
 		assert_in(self.bike, self.other_container.bikes)
 		assert_in(self.bike2, self.other_container.bikes)
 		assert_not_in(self.bike, self.container.bikes)
@@ -119,4 +119,4 @@ class TestContainer(object):
 	def test_error_message_if_no_available_bikes(self):
 		self.bike.break_bike()
 		self.container.dock(self.bike)
-		assert_equal(self.container.release_available_bikes(self.other_container), "There are no available bikes here")
+		assert_equal(self.container.release_available_bikes_to(self.other_container), "There are no available bikes here")

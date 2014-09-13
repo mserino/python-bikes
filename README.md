@@ -48,21 +48,23 @@ John can also fall from the bike (and break it): `John.falls_from(bike)`
 
 release the bike `>>> John.release(bike)`
 
-###Station Class
+###Station, Van, Garage Class
 
-import the Station class: `>>> from station.station import Station`
+import the class: `>>> from station.station import Station`
 
 create your station: `>>> station = Station()`
 
-the station can dock bikes (not more than 5): `>>> station.dock(bike)`
+can dock bikes: `>>> station.dock(bike)`
 
-is the station full?: `>>> station.is_full()`
+is it full?: `>>> station.is_full()`
 
 check the available bikes: `>>> station.available_bikes`
 
 and the broken bikes: `>>> station.broken_bikes`
 
-the station can release a bike: `>>> station.release(bike)`
+can release a bike: `>>> station.release(bike)`
+
+can release all the bikes to another class: `>>> station.release_broken_bikes_to(van)`
 
 ###Run the tests:
 `$ cd python-bikes`
