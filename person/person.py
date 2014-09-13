@@ -21,3 +21,10 @@ class Person(object):
 
 	def falls_from(self, bike):
 		bike.broken = True
+
+	def rent_from(self, bike, station):
+		if bike in station.bikes:
+			self.rides(bike)
+			station.release(bike)
+		else:
+			return "There are no bikes here"

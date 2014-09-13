@@ -2,6 +2,7 @@ from nose.tools import *
 import nose
 from person.person import Person
 from bike.bike import Bike
+from station.station import Station
 
 class TestPerson(object):
 
@@ -18,6 +19,7 @@ class TestPerson(object):
 		self.person = Person()
 		self.bike = Bike()
 		self.bike2 = Bike()
+		self.station = Station()
 
 	def teardown(self):
 		"""This method is run once after _each_ test method is executed"""
@@ -55,3 +57,12 @@ class TestPerson(object):
 		self.person.rides(self.bike)
 		self.person.falls_from(self.bike)
 		assert_true(self.bike.broken)
+
+	def test_person_cannot_rent_if_station_has_no_bikes(self):
+		assert_equal(self.person.rent_from(self.bike, self.station), "There are no bikes here")
+
+	def test_person_can_rent_bike_from_station(self):
+		self.station.dock(self.bike)
+		self.person.rent_from(self.bike, self.station)
+		assert_in(self.bike, self.person.bikes)
+		assert_not_in(self.bike, self.station.bikes)
