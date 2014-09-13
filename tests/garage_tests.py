@@ -68,3 +68,7 @@ class TestVan(object):
 		self.garage.fix_bikes()
 		assert_in(self.bike, self.garage.available_bikes)
 		assert_in(self.bike2, self.garage.available_bikes)
+
+	def test_error_if_no_broken_bikes(self):
+		self.garage.dock(self.bike)
+		assert_equal(self.garage.fix_bikes(), "There are no broken bikes here")
