@@ -24,7 +24,7 @@ class Person(object):
 
 	def rent_from(self, bike, station):
 		if bike in station.bikes:
-			self.rides(bike)
 			station.release(bike)
+			self.rides(bike)
 		else:
 			return "There are no bikes here"

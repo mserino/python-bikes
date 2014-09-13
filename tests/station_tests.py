@@ -27,18 +27,6 @@ class TestStation(object):
 		"""This method is run once after _each_ test method is executed"""
 		pass
 
-	def test_station_has_no_bikes(self):
-		assert_equal(len(self.station.bikes), 0)
-
-	def test_station_can_dock_bikes(self):
-		self.station.dock(self.bike)
-		assert_equal(len(self.station.bikes), 1)
-
-	def test_station_can_release_bikes(self):
-		self.station.dock(self.bike)
-		self.station.release(self.bike)
-		assert_equal(len(self.station.bikes), 0)
-
 	def test_station_can_dock_maximum_five_bikes(self):
 		assert_equal(self.station.capacity, 5)
 
@@ -62,23 +50,3 @@ class TestStation(object):
 		self.station.dock(self.bike4)
 		self.station.dock(self.bike5)
 		assert_equal(self.station.dock(self.bike6), "Cannot dock any more bikes")
-
-	def test_station_has_broken_bikes(self):
-		self.bike.break_bike()
-		self.station.dock(self.bike)
-		self.station.dock(self.bike2)
-		assert_in(self.bike, self.station.broken_bikes)
-
-	def test_station_has_available_bikes(self):
-		self.station.dock(self.bike)
-		self.station.dock(self.bike2)
-		assert_in(self.bike, self.station.available_bikes)
-		assert_in(self.bike2, self.station.available_bikes)
-
-	def test_if_a_bike_is_already_docked(self):
-		self.station.dock(self.bike)
-		assert_true(self.station.has_already(self.bike))
-
-	def test_bike_cannot_be_docked_twice(self):
-		self.station.dock(self.bike)
-		assert_equal(self.station.dock(self.bike), "Cannot dock the same bike twice")

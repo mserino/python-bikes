@@ -16,6 +16,7 @@ class TestContainer(object):
 	def setUp(self):
 		"""This method is run once before _each_ test method is executed"""
 		self.container = Container(6)
+		self.other_container = Container(5)
 		self.bike = Bike()
 		self.bike2 = Bike()
 		self.bike3 = Bike()
@@ -89,3 +90,33 @@ class TestContainer(object):
 	def test_bike_cannot_be_docked_twice(self):
 		self.container.dock(self.bike)
 		assert_equal(self.container.dock(self.bike), "Cannot dock the same bike twice")
+
+	def test_can_release_all_broken_bikes(self):
+		self.bike.break_bike()
+		self.bike2.break_bike()
+		self.container.dock(self.bike)
+		self.container.dock(self.bike2)
+		self.container.release_broken_bikes(self.other_container)
+		assert_in(self.bike, self.other_container.bikes)
+		assert_in(self.bike2, self.other_container.bikes)
+		assert_not_in(self.bike, self.container.bikes)
+		assert_not_in(self.bike2, self.container.bikes)
+
+	def test_error_message_if_no_broken_bikes(self):
+		self.container.dock(self.bike)
+		assert_equal(self.container.release_broken_bikes(self.other_container), "There are no broken bikes here")
+
+	def test_can_release_all_available_bikes(self):
+		self.container.dock(self.bike)
+		self.container.dock(self.bike2)
+		self.container.release_available_bikes(self.other_container)
+		assert_in(self.bike, self.other_container.bikes)
+		assert_in(self.bike2, self.other_container.bikes)
+		assert_not_in(self.bike, self.container.bikes)
+		assert_not_in(self.bike2, self.container.bikes)
+
+
+	def test_error_message_if_no_available_bikes(self):
+		self.bike.break_bike()
+		self.container.dock(self.bike)
+		assert_equal(self.container.release_available_bikes(self.other_container), "There are no available bikes here")

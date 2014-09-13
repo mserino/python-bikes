@@ -43,4 +43,3 @@ class TestBike(object):
 		self.bike.break_bike()
 		self.bike.fix_bike()
 		assert_equal(self.bike.status, "fixed")
-		

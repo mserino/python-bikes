@@ -35,3 +35,20 @@ class Container:
 	def has_already(self, bike):
 		if bike in self.bikes:
 			return True
+
+	def release_and_dock(self, bikes, other_container):
+		for bike in bikes:
+			self.release(bike)
+			other_container.dock(bike)
+
+	def release_broken_bikes(self, other_container):
+		if len(self.broken_bikes) > 0:
+			self.release_and_dock(self.broken_bikes, other_container)
+		else:
+			return "There are no broken bikes here"
+
+	def release_available_bikes(self, other_container):
+		if len(self.available_bikes) > 0:
+			self.release_and_dock(self.available_bikes, other_container)
+		else:
+			return "There are no available bikes here"

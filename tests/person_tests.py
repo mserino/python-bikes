@@ -44,11 +44,11 @@ class TestPerson(object):
 	def test_person_is_not_full(self):
 		assert_equal(self.person.has_bike(), "doesn\'t have any bike")
 
-	def test_person_is_full(self):
+	def test_person_has_a_bike(self):
 		self.person.rides(self.bike)
 		assert_equal(self.person.has_bike(), "has one bike")
 
-	def test_person_cannot_have_another_bike_if_full(self):
+	def test_person_cannot_have_two_bikes(self):
 		self.person.rides(self.bike)
 		self.person.rides(self.bike2)
 		assert_equal(self.person.rides(self.bike2), "Cannot ride more than one bike")
