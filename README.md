@@ -50,9 +50,15 @@ release the bike `>>> John.release(bike)`
 
 ###Station, Van, Garage Class
 
-import the class: `>>> from station.station import Station`
+import the classes: `>>> from station.station import Station`
+`>>> from garage.garage import Garage`
+`>>> from van.van import Van`
 
 create your station: `>>> station = Station()`
+
+create your van: `>>> van = Van()`
+
+create your garage: `>>> garage = Garage()`
 
 can dock bikes: `>>> station.dock(bike)`
 
@@ -64,13 +70,18 @@ and the broken bikes: `>>> station.broken_bikes`
 
 can release a bike: `>>> station.release(bike)`
 
-can release all the bikes to another class: `>>> station.release_broken_bikes_to(van)`
+can release all the broken bikes to another class:
+`>>> station.release_broken_bikes_to(van)`
+`>>> van.release_broken_bikes_to(garage)`
+
+garage can fix all the broken bikes: `>>> garage.fix_bikes()`
+
+can release all the fixed bikes:
+`>>> garage.release_available_bikes_to(van)`
+`>>> van.release_available_bikes_to(station)`
 
 ###Run the tests:
-`$ cd python-bikes`
+move in the root folder of the project `$ cd python-bikes`
 
 to run all the tests: `$ nosetests`
 to run a specific class test: `$ nosetests tests/station_tests.py`
-
-###What's missing?
-~ This project is still work in progress ~

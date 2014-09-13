@@ -115,7 +115,6 @@ class TestContainer(object):
 		assert_not_in(self.bike, self.container.bikes)
 		assert_not_in(self.bike2, self.container.bikes)
 
-
 	def test_error_message_if_no_available_bikes(self):
 		self.bike.break_bike()
 		self.container.dock(self.bike)
