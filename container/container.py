@@ -26,6 +26,11 @@ class Container:
 		else:
 			return "There are no bikes here"
 
+		if bike in self.available_bikes:
+			self.available_bikes.remove(bike)
+		elif bike in self.broken_bikes:
+			self.broken_bikes.remove(bike)
+
 	def is_full(self):
 		if len(self.bikes) == self.capacity:
 			return "full"
@@ -38,7 +43,7 @@ class Container:
 
 	def release_and_dock(self, bikes, other_container):
 		for bike in bikes:
-			self.bikes.remove(bike)
+			self.release(bike)
 			other_container.dock(bike)
 
 	def release_broken_bikes_to(self, other_container):
